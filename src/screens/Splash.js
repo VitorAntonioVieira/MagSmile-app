@@ -1,5 +1,11 @@
-// import React, { useEffect } from "react";
-// import { View, Text, ImageBackground, Image, StyleSheet } from 'react-native';
+import React, { useEffect } from "react";
+import { View, Text, ImageBackground, Image, StyleSheet } from 'react-native';
+import Styles from '../styles/Styles';
+import {
+  useFonts,
+  Poppins_500Medium,
+  Poppins_600SemiBold
+} from '@expo-google-fonts/poppins';
 
 const SplashScreen = ({ navigation }) => {
   useEffect(() => {
@@ -8,9 +14,20 @@ const SplashScreen = ({ navigation }) => {
     }, 2000); 
   }, [navigation]);
 
+  const [fontsLoaded] = useFonts({
+      Poppins_500Medium,
+      Poppins_600SemiBold
+  });
+
+  if (!fontsLoaded) {
+    return (
+        <Text>Erro</Text>
+    );
+  }
+
   return (
     <View style={styles.container}>
-      <Image style={styles.logo}></Image>
+      <Image style={styles.logo} source={require('../assets/img/logo.png')} />
     </View>
   );
 };
@@ -18,14 +35,12 @@ const SplashScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#279DEC',
+    backgroundColor: Styles.Colors.mainPurple,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  logoText: {
-    fontSize: 48,
-    color: 'white',
-    fontWeight: 'bold',
+  logo: {
+    width: 200,
   },
 });
 
