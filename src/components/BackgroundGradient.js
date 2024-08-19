@@ -1,5 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
-import Styles from "../constants/Style";
+import Styles from "../styles/Styles";
 
 const Background = ({ children, startY, color1, color2 }) => {
     return (
@@ -8,18 +8,17 @@ const Background = ({ children, startY, color1, color2 }) => {
                 height: '100%',
                 width: '100%',
                 flex: 1,
-                flexDirection: 'column',
-                justifyContent: 'flex-end',
                 zIndex: -1,
-                paddingLeft: Styles.Metrics.sidePadding,
-                paddingRight: Styles.Metrics.sidePadding
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginHorizontal: Styles.Metrics.marginHorizontal
             }}
-            start={{ x: 0, y: startY }}
-            end={{ x: 1, y: 0 }}
+            start={{ x: -0.5, y: startY }}
+            end={{ x: -0.9, y: 1 }}
             colors={[color1, color2]}
         >
             {children}
-        </LinearGradient>
+        </LinearGradient >
     )
 }
 

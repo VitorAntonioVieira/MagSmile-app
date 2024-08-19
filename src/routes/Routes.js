@@ -1,15 +1,29 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import SplashScreen from "../screens/Splash";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Login from "../screens/Login";
 
 const Stack = createNativeStackNavigator();
 
 const Main = () => {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="Splash" component={SplashScreen} />
-            {/* <Stack.Screen name="Login" component={} />
-            <Stack.Screen name="CreateAccount" component={} />
+        <Stack.Navigator
+            initialRouteName="Splash"
+        >
+            <Stack.Screen
+                name="Splash"
+                component={Login}
+                options={{
+                    headerShown: false
+                }}
+            />
+            {/* <Stack.Screen
+                name="Login"
+                component={Login}
+                options={{
+                    headerShown: false
+                }}
+            /> */}
+            {/* <Stack.Screen name="CreateAccount" component={} />
             <Stack.Screen name="Redefine" component={} />
             <Stack.Screen name="App" component={AppScreen} /> */}
         </Stack.Navigator>
