@@ -6,13 +6,16 @@ import {
     useFonts
 } from '@expo-google-fonts/poppins';
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View, SafeAreaView, ActivityIndicator } from 'react-native';
 import CustomButton from '../components/Button';
 import Container from '../components/Container';
 import CustomTextInput from '../components/TextInput';
 import Styles from '../styles/Styles';
 
 const Login = ({ navigation }) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     const [fontsLoaded] = useFonts({
         Poppins_500Medium,
         Poppins_600SemiBold,
@@ -20,11 +23,12 @@ const Login = ({ navigation }) => {
         Poppins_700Bold
     })
     if (!fontsLoaded) {
-        return null;
+        return (
+            <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size={"large"} color={Styles.Colors.mainPurple} />
+            </SafeAreaView>
+        )
     }
-
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
 
     return (
         <View style={styles.main}>
@@ -38,6 +42,7 @@ const Login = ({ navigation }) => {
                 <CustomTextInput icon={'profile'} placeholder={'Email ou Nome de usuário'} />
                 <CustomTextInput icon={'lock'} placeholder={'Senha'} secure={true} />
                 <CustomButton text={'Entrar'} color={'mainPurple'} width={'80%'} />
+                <Text style={styles.sideLabel} >Redefinir senha</Text>
             </Container>
         </View>
     )
@@ -67,6 +72,12 @@ const styles = StyleSheet.create({
         color: Styles.Colors.black,
         textAlign: 'center',
         marginBottom: 14,
+    },
+    sideLabel: {
+        alignSelf: 'flex-end',
+        fontFamily: 'Poppins_400Regular',
+        fontSize: 14,
+        textAlign: 'right'
     }
 })
 
