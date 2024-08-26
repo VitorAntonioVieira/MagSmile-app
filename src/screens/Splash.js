@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 import {
   Poppins_500Medium,
   Poppins_600SemiBold,
   useFonts,
 } from '@expo-google-fonts/poppins';
+import React, { useEffect, useState } from 'react';
+import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
   Easing,
   runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
   withRepeat,
+  withTiming,
 } from 'react-native-reanimated';
 import Background from '../components/BackgroundGradient';
 import Styles from '../styles/Styles';
@@ -100,7 +100,7 @@ const ConfettiAnimation = () => {
     for (let i = 0; i < 50; i++) {
       newParticles.push({
         x: Math.random() * width,
-        y: -50, 
+        y: -50,
       });
     }
     setParticles(newParticles);
@@ -139,7 +139,7 @@ const SplashScreen = ({ navigation }) => {
         color1={Styles.Colors.mainPurple}
         color2={Styles.Colors.black}
       >
-        <ConfettiAnimation /> 
+        <ConfettiAnimation />
         <View style={styles.section}>
           <Image
             style={styles.back}
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  confettiContainer: { 
+  confettiContainer: {
     ...StyleSheet.absoluteFillObject, // Ensure confetti renders over the entire screen
   },
   confettiParticle: {
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 300,
-    zIndex: 999, 
+    zIndex: 999,
     marginBottom: -100,
     marginTop: -50,
   },
