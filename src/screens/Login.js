@@ -6,7 +6,7 @@ import {
     useFonts
 } from '@expo-google-fonts/poppins';
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, View, SafeAreaView, ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import CustomButton from '../components/Button';
 import Container from '../components/Container';
 import CustomTextInput from '../components/TextInput';
@@ -42,7 +42,10 @@ const Login = ({ navigation }) => {
                 <CustomTextInput icon={'profile'} placeholder={'Email ou Nome de usuário'} />
                 <CustomTextInput icon={'lock'} placeholder={'Senha'} secure={true} />
                 <CustomButton text={'Entrar'} color={'mainPurple'} width={'80%'} />
-                <Text style={styles.sideLabel} >Redefinir senha</Text>
+                <Text style={styles.bottomLabel} >Redefinir senha</Text>
+                <View style={styles.bottomLine} >
+                    <Text style={styles.label} >ou</Text>
+                </View>
             </Container>
         </View>
     )
@@ -73,11 +76,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 14,
     },
-    sideLabel: {
-        alignSelf: 'flex-end',
-        fontFamily: 'Poppins_400Regular',
+    bottomLabel: {
+        fontFamily: 'Poppins_500Medium',
         fontSize: 14,
-        textAlign: 'right'
+        color: Styles.Colors.mainPurple
     }
 })
 
