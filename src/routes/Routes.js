@@ -7,6 +7,7 @@ import RedefinirSenha from "../screens/RedefinirSenha";
 import Cadastro from "../screens/Cadastro";
 import Confirmacoes from "../screens/Confirmacoes";
 import ListaConvidados from "../screens/ListaConvidados";
+import Planejamento from "../screens/Planejamento";
 
 const Stack = createNativeStackNavigator();
 
@@ -60,6 +61,13 @@ const Main = () => {
              <Stack.Screen
                 name="ListaConvidados"
                 component={ListaConvidados}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="Planejamento"
+                component={Planejamento}
                 options={{
                     headerShown: false
                 }}
