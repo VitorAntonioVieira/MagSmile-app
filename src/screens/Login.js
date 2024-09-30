@@ -56,14 +56,14 @@ const Login = ({ navigation }) => {
                 />
                 <Text style={styles.title}>Bem Vindo!</Text>
                 <Text style={styles.subtitle}>Use seus dados para acessar sua conta</Text>
-                
+
                 <CustomTextInput
                     icon={'profile'}
                     placeholder={'Email ou Nome de usuário'}
                     value={email}
                     onChangeText={setEmail}
                 />
-                
+
                 <CustomTextInput
                     icon={'lock'}
                     placeholder={'Senha'}
@@ -71,7 +71,7 @@ const Login = ({ navigation }) => {
                     value={password}
                     onChangeText={setPassword}
                 />
-                
+
                 {/* Botão de Entrar */}
                 <CustomButton
                     text={'Entrar'}
@@ -79,19 +79,20 @@ const Login = ({ navigation }) => {
                     width={'80%'}
                     onPress={handleLogin} // Navega para a tela Home ao pressionar
                 />
-                
+
                 {/* Link para redefinir senha */}
                 <TouchableOpacity onPress={handleResetPasswordNavigation}>
-                    <Text style={styles.bottomLabel}>Redefinir senha</Text>
+                    <Text>Esqueceu sua senha? <Text style={styles.bottomLabel}>Redefinir senha</Text></Text>
                 </TouchableOpacity>
-                
+
                 <View style={styles.bottomLine}>
+                    <View style={styles.line} />
                     <Text style={styles.label}>ou</Text>
-                    {/* Botão de "Cadastre-se" */}
-                    <TouchableOpacity onPress={handleSignUpNavigation}>
-                        <Text style={styles.bottomLabel}>Cadastre-se</Text>
-                    </TouchableOpacity>
+                    <View style={styles.line} />
                 </View>
+                <TouchableOpacity onPress={handleSignUpNavigation}>
+                <Text>Não tem uma conta? <Text style={styles.bottomLabel}>Cadastre-se</Text></Text>
+                </TouchableOpacity>
             </Container>
         </View>
     );
@@ -127,14 +128,20 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: Styles.Colors.mainPurple,
     },
+    line: {
+        flex: 1,
+        height: 1,
+        backgroundColor: Styles.Colors.ccc,
+      },
     label: {
+        color: Styles.Colors.ccc,
         textAlign: 'center',
+        marginHorizontal: 10,
     },
     bottomLine: {
-        justifyContent: 'center',
+        flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 10,
-        marginBottom: 10,
+        marginVertical: 10
     },
 });
 
