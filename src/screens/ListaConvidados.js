@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { app } from '../components/Banco'; // Certifique-se de que o caminho esteja correto
-import { collection, addDoc, onSnapshot, query, where } from 'firebase/firestore';
+import { collection, addDoc, onSnapshot, query, where, getFirestore } from 'firebase/firestore';
 import CheckBox from '@react-native-community/checkbox';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function GuestList() {
   const [guestName, setGuestName] = useState('');
   const [guests, setGuests] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
+  const db = getFirestore(app);
+
   // Função para carregar convidados do Firestore em tempo real
   useEffect(() => {
-    const q = query(collection(app, 'eventGuests'));
+    const q = query(collection(db, 'eventGuests'));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const guestsData = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -26,7 +29,7 @@ export default function GuestList() {
   const handleAddGuest = async () => {
     if (guestName.trim()) {
       try {
-        await addDoc(collection(app, 'eventGuests'), {
+        await addDoc(collection(db, 'eventGuests'), {
           name: guestName,
           confirmed: false, // Por padrão, novo convidado não está confirmado
         });
@@ -47,7 +50,7 @@ export default function GuestList() {
   const unconfirmedGuests = filteredGuests.filter((guest) => !guest.confirmed);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Lista de convidados</Text>
 
       {/* Estatísticas */}
@@ -110,7 +113,7 @@ export default function GuestList() {
       <TouchableOpacity style={styles.addButton} onPress={handleAddGuest}>
         <Text style={styles.addButtonText}>Adicionar convidado</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
 

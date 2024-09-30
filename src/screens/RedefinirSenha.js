@@ -1,6 +1,9 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import CustomButton from '../components/Button';
+import CustomTextInput from '../components/TextInput';
 
 const ResetPasswordScreen = ({ navigation }) => {
   return (
@@ -19,25 +22,12 @@ const ResetPasswordScreen = ({ navigation }) => {
           Digite seu email e enviaremos um email para você informando como recuperá-la
         </Text>
 
-        {/* Campo de email */}
-        <View style={styles.inputContainer}>
-          <Icon name="email-outline" size={20} color="#888" style={styles.icon} />
-          <TextInput
-            placeholder="abc@email.com"
-            style={styles.input}
-            keyboardType="email-address"
-          />
-        </View>
+        <CustomTextInput icon={'email'} placeholder={'Insira seu email'} />
 
-        {/* Botão de Enviar */}
-        <TouchableOpacity style={styles.solidButton}>
-          <Text style={styles.buttonText}>Enviar</Text>
-        </TouchableOpacity>
+        <CustomButton color={'mainPurple'} text={'Enviar'} width={'80%'} onPress={console.log('enviado')} />
 
-        {/* Divisor */}
+        {/* Divisor
         <Text style={styles.orText}>ou</Text>
-
-        {/* Botões de login social */}
         <TouchableOpacity style={styles.socialButton}>
           <Icon name="facebook" size={20} color="#3b5998" />
           <Text style={styles.socialText}>Entrar com Facebook</Text>
@@ -46,7 +36,7 @@ const ResetPasswordScreen = ({ navigation }) => {
         <TouchableOpacity style={styles.socialButton}>
           <Icon name="google" size={20} color="#DB4437" />
           <Text style={styles.socialText}>Entrar com Google</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         {/* Link para Login */}
         <Text style={styles.footerText}>
@@ -104,18 +94,6 @@ const styles = StyleSheet.create({
     height: 40,
     fontSize: 16,
     color: '#333',
-  },
-  solidButton: {
-    backgroundColor: '#7208D7', // Cor sólida
-    borderRadius: 8,
-    paddingVertical: 12,
-    alignItems: 'center',
-    marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2, // Sombra no Android
   },
   buttonText: {
     color: '#fff',

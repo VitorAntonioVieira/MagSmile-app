@@ -14,7 +14,7 @@ const Stack = createNativeStackNavigator();
 const Main = () => {
     return (
         <Stack.Navigator
-            initialRouteName="Splash"
+            initialRouteName="ListaConvidados"
         >
             <Stack.Screen
                 name="Splash"

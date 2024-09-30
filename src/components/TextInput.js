@@ -5,7 +5,8 @@ import Styles from '../styles/Styles';
 const CustomTextInput = ({ icon, placeholder, secure, change }) => {
     const images = {
         profile: require('../assets/img/icons/profile.png'),
-        lock: require('../assets/img/icons/lock.png')
+        lock: require('../assets/img/icons/lock.png'),
+        email: require('../assets/img/icons/email.png'),
     };
 
     return (
