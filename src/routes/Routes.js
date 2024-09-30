@@ -5,6 +5,8 @@ import SplashScreen from "../screens/Splash";
 import Home from "../screens/Home";
 import RedefinirSenha from "../screens/RedefinirSenha"; 
 import Cadastro from "../screens/Cadastro";
+import Confirmacoes from "../screens/Confirmacoes";
+import ListaConvidados from "../screens/ListaConvidados";
 
 const Stack = createNativeStackNavigator();
 
@@ -44,6 +46,20 @@ const Main = () => {
             <Stack.Screen
                 name="Home"
                 component={Home}
+                options={{
+                    headerShown: false
+                }}
+            />
+             <Stack.Screen
+                name="Confirmacoes"
+                component={Confirmacoes}
+                options={{
+                    headerShown: false
+                }}
+            />
+             <Stack.Screen
+                name="ListaConvidados"
+                component={ListaConvidados}
                 options={{
                     headerShown: false
                 }}
