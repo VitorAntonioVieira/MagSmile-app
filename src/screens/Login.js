@@ -1,3 +1,10 @@
+import React, { useState } from 'react';
+import { ActivityIndicator, Image, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import CustomButton from '../components/Button';
+import Container from '../components/Container';
+import CustomTextInput from '../components/TextInput';
+import Styles from '../styles/Styles';
+
 import {
     Poppins_400Regular,
     Poppins_500Medium,
@@ -5,12 +12,6 @@ import {
     Poppins_700Bold,
     useFonts
 } from '@expo-google-fonts/poppins';
-import React, { useState } from 'react';
-import { ActivityIndicator, Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import CustomButton from '../components/Button';
-import Container from '../components/Container';
-import CustomTextInput from '../components/TextInput';
-import Styles from '../styles/Styles';
 
 const Login = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -21,14 +22,30 @@ const Login = ({ navigation }) => {
         Poppins_600SemiBold,
         Poppins_400Regular,
         Poppins_700Bold
-    })
+    });
+
     if (!fontsLoaded) {
         return (
             <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <ActivityIndicator size={"large"} color={Styles.Colors.mainPurple} />
             </SafeAreaView>
-        )
+        );
     }
+
+    // Função para navegar até a tela Home
+    const handleLogin = () => {
+        navigation.navigate('Home'); // Utilizando navigate para ir até a tela Home
+    };
+
+    // Função para navegar até a tela de cadastro
+    const handleSignUpNavigation = () => {
+        navigation.navigate('Cadastro'); // Utilize o nome da tela de cadastro
+    };
+
+    // Função para navegar até a tela de redefinição de senha
+    const handleResetPasswordNavigation = () => {
+        navigation.navigate('RedefinirSenha');
+    };
 
     return (
         <View style={styles.main}>
@@ -37,19 +54,48 @@ const Login = ({ navigation }) => {
                     style={styles.headerLogo}
                     source={require('../assets/img/logo_rbg_invert.png')}
                 />
-                <Text style={styles.title} >Bem Vindo!</Text>
+                <Text style={styles.title}>Bem Vindo!</Text>
                 <Text style={styles.subtitle}>Use seus dados para acessar sua conta</Text>
-                <CustomTextInput icon={'profile'} placeholder={'Email ou Nome de usuário'} />
-                <CustomTextInput icon={'lock'} placeholder={'Senha'} secure={true} />
-                <CustomButton text={'Entrar'} color={'mainPurple'} width={'80%'} />
-                <Text style={styles.bottomLabel} >Redefinir senha</Text>
-                <View style={styles.bottomLine} >
-                    <Text style={styles.label} >ou</Text>
+                
+                <CustomTextInput
+                    icon={'profile'}
+                    placeholder={'Email ou Nome de usuário'}
+                    value={email}
+                    onChangeText={setEmail}
+                />
+                
+                <CustomTextInput
+                    icon={'lock'}
+                    placeholder={'Senha'}
+                    secure={true}
+                    value={password}
+                    onChangeText={setPassword}
+                />
+                
+                {/* Botão de Entrar */}
+                <CustomButton
+                    text={'Entrar'}
+                    color={'mainPurple'}
+                    width={'80%'}
+                    onPress={handleLogin} // Navega para a tela Home ao pressionar
+                />
+                
+                {/* Link para redefinir senha */}
+                <TouchableOpacity onPress={handleResetPasswordNavigation}>
+                    <Text style={styles.bottomLabel}>Redefinir senha</Text>
+                </TouchableOpacity>
+                
+                <View style={styles.bottomLine}>
+                    <Text style={styles.label}>ou</Text>
+                    {/* Botão de "Cadastre-se" */}
+                    <TouchableOpacity onPress={handleSignUpNavigation}>
+                        <Text style={styles.bottomLabel}>Cadastre-se</Text>
+                    </TouchableOpacity>
                 </View>
             </Container>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     main: {
@@ -79,8 +125,17 @@ const styles = StyleSheet.create({
     bottomLabel: {
         fontFamily: 'Poppins_500Medium',
         fontSize: 14,
-        color: Styles.Colors.mainPurple
-    }
-})
+        color: Styles.Colors.mainPurple,
+    },
+    label: {
+        textAlign: 'center',
+    },
+    bottomLine: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10,
+        marginBottom: 10,
+    },
+});
 
 export default Login;

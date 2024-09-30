@@ -2,6 +2,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "../screens/Login";
 import SplashScreen from "../screens/Splash";
+import Home from "../screens/Home";
+import RedefinirSenha from "../screens/RedefinirSenha"; 
+import Cadastro from "../screens/Cadastro";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +27,27 @@ const Main = () => {
                     headerShown: false
                 }}
             />
+             <Stack.Screen
+                name="RedefinirSenha"
+                component={RedefinirSenha}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="Cadastro"
+                component={Cadastro}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="Home"
+                component={Home}
+                options={{
+                    headerShown: false
+                }}
+            />
             {/* <Stack.Screen name="CreateAccount" component={} />
             <Stack.Screen name="Redefine" component={} />
             <Stack.Screen name="App" component={AppScreen} /> */}
@@ -33,14 +57,12 @@ const Main = () => {
 
 const Tabs = createBottomTabNavigator();
 
-// const AppScreen = () => {
-//     return (
-//         <Tabs.Navigator>
-//             <Tabs.Screen name="Home" component={} />
-//             <Tabs.Screen name="Events" component={} />
-//             <Tabs.Screen name="CreateEvent" component={} />
-//         </Tabs.Navigator>
-//     );
-// }
+const AppScreen = () => {
+    return (
+        <Tabs.Navigator>
+            <Tabs.Screen name="Home" component={Home} />
+        </Tabs.Navigator>
+    );
+}
 
 export default Main;
