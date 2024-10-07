@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { app } from '../components/Banco'; // Certifique-se de que o caminho esteja correto
-import { collection, addDoc, onSnapshot, query, where, getFirestore } from 'firebase/firestore';
-import CheckBox from '@react-native-community/checkbox';
+import { collection, addDoc, onSnapshot, query, doc, updateDoc, getFirestore } from 'firebase/firestore';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function GuestList() {
@@ -37,6 +36,18 @@ export default function GuestList() {
       } catch (error) {
         console.error('Erro ao adicionar convidado:', error);
       }
+    }
+  };
+
+  // Função para atualizar o estado de confirmação de um convidado no Firestore
+  const handleToggleConfirmation = async (guestId, currentStatus) => {
+    try {
+      const guestRef = doc(db, 'eventGuests', guestId);
+      await updateDoc(guestRef, {
+        confirmed: !currentStatus, // Inverte o estado atual de confirmação
+      });
+    } catch (error) {
+      console.error('Erro ao atualizar confirmação:', error);
     }
   };
 
@@ -84,8 +95,13 @@ export default function GuestList() {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View style={styles.guestItem}>
-            <CheckBox value={item.confirmed} />
-            <Text>{item.name}</Text>
+            <Text style={styles.guestName}>{item.name}</Text>
+            <TouchableOpacity
+              style={styles.confirmButton}
+              onPress={() => handleToggleConfirmation(item.id, item.confirmed)}
+            >
+              <Text style={styles.confirmButtonText}>Desconfirmar</Text>
+            </TouchableOpacity>
           </View>
         )}
       />
@@ -97,8 +113,13 @@ export default function GuestList() {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View style={styles.guestItem}>
-            <CheckBox value={item.confirmed} />
-            <Text>{item.name}</Text>
+            <Text style={styles.guestName}>{item.name}</Text>
+            <TouchableOpacity
+              style={styles.confirmButton}
+              onPress={() => handleToggleConfirmation(item.id, item.confirmed)}
+            >
+              <Text style={styles.confirmButtonText}>Confirmar</Text>
+            </TouchableOpacity>
           </View>
         )}
       />
@@ -126,7 +147,10 @@ const styles = StyleSheet.create({
   statLabel: { fontSize: 14, color: '#fff' },
   searchInput: { borderColor: '#ccc', borderWidth: 1, padding: 10, borderRadius: 8, marginBottom: 10 },
   subtitle: { fontSize: 18, marginVertical: 10 },
-  guestItem: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
+  guestItem: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 },
+  guestName: { fontSize: 16 },
+  confirmButton: { backgroundColor: '#6200ea', padding: 10, borderRadius: 8 },
+  confirmButtonText: { color: '#fff', fontSize: 14 },
   input: { borderColor: '#ccc', borderWidth: 1, padding: 10, borderRadius: 8, marginBottom: 10 },
   addButton: { backgroundColor: '#6200ea', padding: 15, borderRadius: 8, alignItems: 'center' },
   addButtonText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
