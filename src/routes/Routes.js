@@ -3,12 +3,17 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "../screens/Login";
 import SplashScreen from "../screens/Splash";
 import Home from "../screens/Home";
-import RedefinirSenha from "../screens/RedefinirSenha"; 
+import RedefinirSenha from "../screens/RedefinirSenha";
 import Cadastro from "../screens/Cadastro";
 import Confirmacoes from "../screens/Confirmacoes";
 import ListaConvidados from "../screens/ListaConvidados";
 import Planejamento from "../screens/Planejamento";
+<<<<<<< HEAD
 import PartyStyleScreen from "../screens/Estilo";
+=======
+import Paleta from "../screens/Paleta";
+import Seletor from "../screens/Seletor";
+>>>>>>> d2fe35634d3a16b852ac6c375765352108070f26
 
 const Stack = createNativeStackNavigator();
 
@@ -31,7 +36,7 @@ const Main = () => {
                     headerShown: false
                 }}
             />
-             <Stack.Screen
+            <Stack.Screen
                 name="RedefinirSenha"
                 component={RedefinirSenha}
                 options={{
@@ -52,14 +57,14 @@ const Main = () => {
                     headerShown: false
                 }}
             />
-             <Stack.Screen
+            <Stack.Screen
                 name="Confirmacoes"
                 component={Confirmacoes}
                 options={{
                     headerShown: false
                 }}
             />
-             <Stack.Screen
+            <Stack.Screen
                 name="ListaConvidados"
                 component={ListaConvidados}
                 options={{
@@ -76,6 +81,13 @@ const Main = () => {
             <Stack.Screen
                 name="Estilo"
                 component={PartyStyleScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="Seletor"
+                component={Seletor}
                 options={{
                     headerShown: false
                 }}
