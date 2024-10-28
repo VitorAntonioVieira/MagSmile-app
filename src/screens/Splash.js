@@ -119,7 +119,7 @@ const ConfettiAnimation = () => {
 const SplashScreen = ({ navigation }) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Login');
+      navigation.navigate('Estilo');
     }, 5000);
   }, [navigation]);
 
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   confettiContainer: {
-    ...StyleSheet.absoluteFillObject, // Ensure confetti renders over the entire screen
+    // ...StyleSheet.absoluteFillObject, // Ensure confetti renders over the entire screen
   },
   confettiParticle: {
     position: 'absolute',

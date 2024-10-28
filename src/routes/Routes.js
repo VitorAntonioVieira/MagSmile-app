@@ -8,6 +8,7 @@ import Cadastro from "../screens/Cadastro";
 import Confirmacoes from "../screens/Confirmacoes";
 import ListaConvidados from "../screens/ListaConvidados";
 import Planejamento from "../screens/Planejamento";
+import PartyStyleScreen from "../screens/Estilo";
 
 const Stack = createNativeStackNavigator();
 
@@ -68,6 +69,13 @@ const Main = () => {
             <Stack.Screen
                 name="Planejamento"
                 component={Planejamento}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="Estilo"
+                component={PartyStyleScreen}
                 options={{
                     headerShown: false
                 }}
