@@ -8,6 +8,8 @@ import Cadastro from "../screens/Cadastro";
 import Confirmacoes from "../screens/Confirmacoes";
 import ListaConvidados from "../screens/ListaConvidados";
 import Planejamento from "../screens/Planejamento";
+import Paleta from "../screens/Paleta";
+import Seletor from "../screens/Seletor";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,8 +19,8 @@ const Main = () => {
             initialRouteName="Splash"
         >
             <Stack.Screen
-                name="Splash"
-                component={SplashScreen}
+                name="Paleta"
+                component={Paleta}
                 options={{
                     headerShown: false
                 }}
@@ -72,6 +74,20 @@ const Main = () => {
                     headerShown: false
                 }}
             />
+            <Stack.Screen
+                name="Seletor"
+                component={Seletor}
+                options={{
+                    headerShown: false
+                }}
+            />
+              {/* <Stack.Screen
+                name="Paleta"
+                component={Paleta}
+                options={{
+                    headerShown: false
+                }}
+            /> */}
             {/* <Stack.Screen name="CreateAccount" component={} />
             <Stack.Screen name="Redefine" component={} />
             <Stack.Screen name="App" component={AppScreen} /> */}
