@@ -8,12 +8,9 @@ import Cadastro from "../screens/Cadastro";
 import Confirmacoes from "../screens/Confirmacoes";
 import ListaConvidados from "../screens/ListaConvidados";
 import Planejamento from "../screens/Planejamento";
-<<<<<<< HEAD
 import PartyStyleScreen from "../screens/Estilo";
-=======
 import Paleta from "../screens/Paleta";
 import Seletor from "../screens/Seletor";
->>>>>>> d2fe35634d3a16b852ac6c375765352108070f26
 
 const Stack = createNativeStackNavigator();
 
